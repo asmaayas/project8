@@ -24,9 +24,9 @@ const loginReducer=(state={error:''},action)=>{
                 console.log(res.data);
                 let user_info= sessionStorage.getItem("user_info");
 
-                console.log(user_info);
-                if(user_info != ''){
-                    window.location.href = "/reg";
+                console.log('@'+user_info+'@');
+                if(user_info != '' || user_info != null ){
+                    window.location.href = "/user";
                 }
                 return {...state, error: 'Username/ email or password is invalid'}
             

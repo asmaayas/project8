@@ -7,7 +7,34 @@ function Signup(){
     const error=useSelector(state=>state.register);
 
  return(
-    <section className="vh-100" style={{ backgroundColor: "#eee" }}>
+<>
+
+<div class="container">
+  <form onSubmit={()=>dispatch(signup())}>
+  <img src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png" height={212}/>
+  <input type="text" placeholder="Your Name" onChange={(e)=>dispatch(username(e.target.value))}/> <br></br>
+  <span style={{color:'red'}}>{error.usernameError}</span><br></br>
+  <input type="email" placeholder="Email" onChange={(e)=>dispatch(email(e.target.value))}/><br></br>
+  <span style={{color:'red'}}>{error.emailError}</span>
+  <input type="password" placeholder="Password" onChange={(e)=>dispatch(password(e.target.value))}/><br></br>
+  <span>{error.passError}</span>
+  <input type="password" placeholder="Repet Password" onChange={(e)=>dispatch(confirmPass(e.target.value))}/><br></br>
+  <span style={{color:'red'}}>{error.confirmPassError}</span> <br></br>
+  {(error.usernameError || error.emailError || error.passError || error.confirmPassError)
+            ?<input type="submit" defaultValue="Sign up" disabled style={{background: 'none'}}/>
+            :<input type="submit" defaultValue="Sign up" style={{background: 'none', border:'1px solid #fff'}}/>
+            }
+    <p className="small fw-bold mt-2 pt-1 mb-0" style={{color:'#fff'}}>
+//               Have already an account?
+//               <a href="/log" className="link-danger ">
+//                 Login
+//               </a>
+//             </p>
+  </form>
+</div>
+  
+  
+    {/* <section className="vh-100" style={{ backgroundColor: "#eee" }}>
   <div className="container h-100">
     <div className="row d-flex justify-content-center align-items-center h-100">
       <div className="col-lg-12 col-xl-11">
@@ -112,8 +139,8 @@ function Signup(){
       </div>
     </div>
   </div>
-</section>
-
+</section> */}
+</>
 
  )
 }
