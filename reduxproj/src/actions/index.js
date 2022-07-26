@@ -1,3 +1,7 @@
+import {GET_USERS, USERS_ERROR} from './types'
+import axios from 'axios';
+
+
 export const username=(username)=>{
     return{
         type: 'username',
@@ -40,22 +44,20 @@ export const login=()=>{
     
 }
 
+export const getUsers = () => async dispatch => {
 
-function fetchPostsRequest(){
-    return {
-      type: "FETCH_REQUEST"
+    try{
+        const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=cd50b668108ab0e7d74f4585d5c05b53`)
+        dispatch( {
+            type: GET_USERS,
+            payload: res.data.results
+        })
     }
-  }
-  
-  function fetchPostsSuccess(payload) {
-    return {
-      type: "FETCH_SUCCESS",
-      payload
+    catch(e){
+        dispatch( {
+            type: USERS_ERROR,
+            payload: console.log(e),
+        })
     }
-  }
-  
-  function fetchPostsError() {
-    return {
-      type: "FETCH_ERROR"
-    }
-  }
+
+}

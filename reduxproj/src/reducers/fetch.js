@@ -1,10 +1,22 @@
-const reducer = (state = {}, action) => {
-    switch (action.type) {
-      case "FETCH_REQUEST":
-        return state;
-      case "FETCH_SUCCESS": 
-        return {...state, posts: action.payload};
-      default:
-        return state;
+import {GET_USERS} from '../actions/types';
+
+const initialState = {
+    users:[],
+    loading:true
+}
+
+export default function(state = initialState, action){
+
+    switch(action.type){
+
+        case GET_USERS:
+        return {
+            ...state,
+            users:action.payload,
+            loading:false
+
+        }
+        default: return state
     }
-  }
+
+}
